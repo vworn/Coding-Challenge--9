@@ -69,3 +69,21 @@ const company = new Company("TechCorp");
 company.addEmployee(emp1);
 company.addEmployee(mgr1);
 company.listEmployees(); // Expected output
+
+// Task 4: Implementing a Payroll System
+class CompanyWithPayroll extends Company {
+    // Method to calculate total payroll, including bonuses for managers
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, emp) => {
+            return emp instanceof Manager 
+                ? total + emp.calculateAnnualSalary() + emp.calculateBonus()
+                : total + emp.calculateAnnualSalary();
+        }, 0);
+    }
+}
+
+// Example usage for Task 4
+const payrollCompany = new CompanyWithPayroll("TechCorp");
+payrollCompany.addEmployee(emp1);
+payrollCompany.addEmployee(mgr1);
+console.log(payrollCompany.calculateTotalPayroll()); // Expected output
